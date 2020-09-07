@@ -193,7 +193,7 @@
       "description": "Reference to the mapping language schema. Setting this is required so that IDEs can help you when writing your definition.",
       "enum": [
         "https://schemas.exasol.com/edml-1.0.0.json",
-        "../../main/resources/schemas/edml/v1.0.0.json"
+        "../../main/resources/schemas/edml-1.0.0.json"
       ]
     },
     "source": {
