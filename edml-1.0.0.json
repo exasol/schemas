@@ -1,0 +1,215 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.exasol.com/edml-1.0.0.json",
+  "definitions": {
+    "varcharColumnSize": {
+      "type": "integer",
+      "default": 254,
+      "minimum": 1
+    },
+    "fields": {
+      "type": "object",
+      "title": "",
+      "description": "Using the fields object definition a step down into the property tree is modeled. \n\n**Properties**:\n\nNAME_OF_DYNAMODB_COLUMN: mappingDefinition\n\nIt must be specified a least one column.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/definitions/mappingDefinition"
+      }
+    },
+    "destinationTable": {
+      "type": "string",
+      "title": "Name of the destination table in Exasol Virtual Schema",
+      "description": "The name of the resulting table in Exasol.",
+      "pattern": "^[a-zA-Z0-9_]+$"
+    },
+    "mappingDefinition": {
+      "type": "object",
+      "description": "A mapping definition can either be:\n - a mapping to a column or table\n - an step  into the property tree of the DynamoDB table",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "properties": {
+        "fields": {
+          "$ref": "#/definitions/fields"
+        },
+        "toVarcharMapping": {
+          "type": "object",
+          "description": "Maps the selected DynamoDB property to an Exasol VARCHAR column.\n\n*Supported DynamoDB types:* String (S), Number (N), Boolean (BOOL)",
+          "properties": {
+            "varcharColumnSize": {
+              "$ref": "#/definitions/varcharColumnSize"
+            },
+            "overflowBehaviour": {
+              "default": "TRUNCATE",
+              "description": "Behaviour to apply in case a value exceeds the size of the VARCHAR column.\n\nTRUNCATE: truncate the string NULL: use null instead ABORT: abort whole query",
+              "enum": [
+                "TRUNCATE",
+                "ABORT",
+                "NULL"
+              ]
+            },
+            "destinationName": {
+              "type": "string",
+              "description": "Name of the Exasol VARCHAR column"
+            },
+            "description": {
+              "$ref": "#/definitions/description"
+            },
+            "required": {
+              "default": false,
+              "$ref": "#/definitions/required"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            }
+          },
+          "additionalProperties": false
+        },
+        "toJsonMapping": {
+          "title": "toJSON mapping definition",
+          "description": "Maps the selected DynamoDB property and all its descendants to a JSON string.\n\n*Supported DynamoDB types:* Map (M), List (L). The root document is also supported.",
+          "properties": {
+            "varcharColumnSize": {
+              "$ref": "#/definitions/varcharColumnSize"
+            },
+            "overflowBehaviour": {
+              "description": "Behaviour to apply in case a value exceeds the size of the Exasol column.\n\nNULL: use null instead ABORT: abort whole query",
+              "default": "ABORT",
+              "enum": [
+                "NULL",
+                "ABORT"
+              ]
+            },
+            "destinationName": {
+              "type": "string",
+              "description": "Name of the Exasol column. required if used at root level. Else the name of the DynamoDB property is used."
+            },
+            "description": {
+              "$ref": "#/definitions/description"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            }
+          },
+          "additionalProperties": false
+        },
+        "toDecimalMapping": {
+          "title": "toDecimal mapping definition",
+          "description": "Maps the selected DynamoDB property to an Exasol DECIMAL column.\n\n*Supported DynamoDB types:* Numbers (N).",
+          "properties": {
+            "decimalPrecision": {
+              "type": "integer",
+              "description": "Precision of the Exasol DECIMAL type. See https://docs.exasol.com/sql_references/data_types/datatypedetails.htm\n\ndefault = 18",
+              "default": 18
+            },
+            "decimalScale": {
+              "type": "integer",
+              "description": "Scale of the Exasol DECIMAL type. See https://docs.exasol.com/sql_references/data_types/datatypedetails.htm\n\ndefault = 0",
+              "default": 0
+            },
+            "overflowBehaviour": {
+              "description": "Behaviour to apply in case a value exceeds the size of the DECIMAL column.\n\nNULL: use null instead ABORT: abort whole query",
+              "default": "ABORT",
+              "enum": [
+                "NULL",
+                "ABORT"
+              ]
+            },
+            "notNumericBehaviour": {
+              "description": "Behaviour to apply in case a value is not a number\n\nNULL: use null instead ABORT: abort whole query",
+              "default": "ABORT",
+              "enum": [
+                "NULL",
+                "ABORT"
+              ]
+            },
+            "destinationName": {
+              "type": "string",
+              "description": "Name of the Exasol column.\n\nDefault: name of the DynamoDB property is used."
+            },
+            "description": {
+              "$ref": "#/definitions/description"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            }
+          },
+          "additionalProperties": false
+        },
+        "toTableMapping": {
+          "title": "toTable mapping definition",
+          "description": "This mapping is used for normalizing documents from DynamoDB. It creates a new table in the resulting virtual schema named: \\<NAME_OF_PARENT\\>_\\<GIVEN_NAME\\>.\n\n The columns of that new table are defined using the mapping property. If the parent table defined a key using one or more toString mappings for a DynamoDB primary key or secondary index this will be used as foreign key.\n\n*Supported DynamoDB types:* List (L).",
+          "properties": {
+            "destinationTable": {
+              "$ref": "#/definitions/destinationTable"
+            },
+            "mapping": {
+              "$ref": "#/definitions/mappingDefinition",
+              "description": "Defines the mapping for the columns of the new table. If the DynamoDB list contains non objects like strings here directly a toString mapping can be applied. Otherwise, if the list contains objects, you can navigate through its properties using fields."
+            },
+            "description": {
+              "$ref": "#/definitions/description"
+            }
+          },
+          "required": [
+            "mapping"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "description": {
+      "type": "string",
+      "title": "Optional description",
+      "description": "Using this property you can provide documentation."
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "description": "If this property is set to true, queries will abort if the given mapping can't be found a single document. Else, the query will continue and set this cell to a default value. By default this is property is set to false."
+    },
+    "key": {
+      "type": "string",
+      "enum": [
+        "local",
+        "global"
+      ],
+      "description": "Setting this property marks a column as key.\n\n Key columns are used as foreign keys from ToTableMappings for nested lists. \n\nA key can either be local or global. A global key must be unique over all rows of the table. A local key must only be unique in the scope of the nested list."
+    }
+  },
+  "type": "object",
+  "title": "The Root Schema - Represents the mapping from a DynamoDB table to an Exasol Virtual Schema table",
+  "description": "The structure of this mapping definition follows the structure of the data in the DynamoDB. This object represents a DynamoDB table. Its properties are modeled in the fields property of this object. Only properties of the DynamoDB table that shall be mapped are modeled. \n\n Each of this objects must be stored in a single .json file an get uploaded to an directory in bucketfs.",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "source",
+    "destinationTable",
+    "mapping"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to the mapping language schema. Setting this is required so that IDEs can help you when writing your definition.",
+      "enum": [
+        "https://schemas.exasol.com/edml-1.0.0.json",
+        "../../main/resources/schemas/edml/v1.0.0.json"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "title": "DynamoDB table name",
+      "description": "The identifier of the DynamoDB table."
+    },
+    "destinationTable": {
+      "$ref": "#/definitions/destinationTable"
+    },
+    "description": {
+      "$ref": "#/definitions/description"
+    },
+    "mapping": {
+      "$ref": "#/definitions/mappingDefinition",
+      "description": "Defines the mapping for the columns of the table. Typically fields is set here to navigate the DynamoDB tables properties. But also toJson mapping is possible here. In that case the whole document is mapped to a JSON string."
+    }
+  }
+}
