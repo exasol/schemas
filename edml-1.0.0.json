@@ -5,7 +5,8 @@
     "varcharColumnSize": {
       "type": "integer",
       "default": 254,
-      "minimum": 1
+      "minimum": 1,
+      "maximum": 2000000
     },
     "fields": {
       "type": "object",
