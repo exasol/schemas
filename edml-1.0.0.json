@@ -24,7 +24,7 @@
     },
     "mappingDefinition": {
       "type": "object",
-      "description": "A mapping definition can either be:\n - a mapping to a column or table\n - an step  into the property tree of the DynamoDB table",
+      "description": "A mapping definition can either be:\n - a mapping to a column or table\n - a step in the property tree of the DynamoDB table",
       "minProperties": 1,
       "maxProperties": 1,
       "properties": {
@@ -137,14 +137,14 @@
         },
         "toTableMapping": {
           "title": "toTable mapping definition",
-          "description": "This mapping is used for normalizing documents from DynamoDB. It creates a new table in the resulting virtual schema named: \\<NAME_OF_PARENT\\>_\\<GIVEN_NAME\\>.\n\n The columns of that new table are defined using the mapping property. If the parent table defined a key using one or more toString mappings for a DynamoDB primary key or secondary index this will be used as foreign key.\n\n*Supported DynamoDB types:* List (L).",
+          "description": "This mapping is used for normalizing documents from DynamoDB. It creates a new table in the resulting virtual schema named: \\<NAME_OF_PARENT\\>_\\<GIVEN_NAME\\>.\n\n The columns of that new table are defined using the mapping property. If the parent table defines a key using one or more toVarcharMappings for a DynamoDB primary key or secondary index, this will be used as foreign key.\n\n*Supported DynamoDB types:* List (L).",
           "properties": {
             "destinationTable": {
               "$ref": "#/definitions/destinationTable"
             },
             "mapping": {
               "$ref": "#/definitions/mappingDefinition",
-              "description": "Defines the mapping for the columns of the new table. If the DynamoDB list contains non objects like strings here directly a toString mapping can be applied. Otherwise, if the list contains objects, you can navigate through its properties using fields."
+              "description": "Defines the mapping for the columns of the new table. If the DynamoDB list contains non-objects (like strings) here, toVarcharMapping can directly be applied. Otherwise, if the list contains objects, you can navigate through its properties using fields."
             },
             "description": {
               "$ref": "#/definitions/description"
@@ -166,7 +166,7 @@
     "required": {
       "type": "boolean",
       "default": false,
-      "description": "If this property is set to true, queries will abort if the given mapping can't be found a single document. Else, the query will continue and set this cell to a default value. By default this is property is set to false."
+      "description": "If this property is set to 'true', queries will abort if the given mapping cannot find a single document. Else, the query will continue and set this cell to a default value. By default this is property is set to 'false'."
     },
     "key": {
       "type": "string",
@@ -179,7 +179,7 @@
   },
   "type": "object",
   "title": "The Root Schema - Represents the mapping from a DynamoDB table to an Exasol Virtual Schema table",
-  "description": "The structure of this mapping definition follows the structure of the data in the DynamoDB. This object represents a DynamoDB table. Its properties are modeled in the fields property of this object. Only properties of the DynamoDB table that shall be mapped are modeled. \n\n Each of this objects must be stored in a single .json file an get uploaded to an directory in bucketfs.",
+  "description": "The structure of this mapping definition follows the structure of the data in the DynamoDB. This object represents a DynamoDB table. Its properties are modeled in the 'fields' property of this object. Only properties of the DynamoDB table that shall be mapped are modeled. \n\n Each of these objects must be stored in a single '.json' file and get uploaded to an directory in BucketFS.",
   "additionalProperties": false,
   "required": [
     "$schema",
@@ -190,7 +190,7 @@
   "properties": {
     "$schema": {
       "type": "string",
-      "description": "Reference to the mapping language schema. Setting this is required so that IDEs can help you when writing your definition.",
+      "description": "Reference to the mapping language schema. Setting this is required so that IDEs can assist you while writing your definition.",
       "enum": [
         "https://schemas.exasol.com/edml-1.0.0.json",
         "../../main/resources/schemas/edml-1.0.0.json"
@@ -209,7 +209,7 @@
     },
     "mapping": {
       "$ref": "#/definitions/mappingDefinition",
-      "description": "Defines the mapping for the columns of the table. Typically fields is set here to navigate the DynamoDB tables properties. But also toJson mapping is possible here. In that case the whole document is mapped to a JSON string."
+      "description": "Defines the mapping for the columns of the table. Typically 'fields' is set here to navigate the DynamoDB tables properties. But also 'toJsonMapping' mapping is possible here. In that case the whole document is mapped to a JSON string."
     }
   }
 }
