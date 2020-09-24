@@ -1,0 +1,228 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.exasol.com/edml-1.1.0.json",
+  "definitions": {
+    "varcharColumnSize": {
+      "type": "integer",
+      "default": 254,
+      "minimum": 1,
+      "maximum": 2000000
+    },
+    "fields": {
+      "type": "object",
+      "title": "",
+      "description": "This definition defines the expected nested properties of the current property. For each of the nested properties you can again define a mapping. You only need to define the properties you want to map. \n\n**Properties**:\n\nPROPERTY_NAME: mappingDefinition\n\nIt must be specified a least one column.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/definitions/mappingDefinition"
+      }
+    },
+    "destinationTable": {
+      "type": "string",
+      "title": "Name of the destination table in Exasol Virtual Schema",
+      "description": "The name of the resulting table in Exasol."
+    },
+    "mappingDefinition": {
+      "type": "object",
+      "description": "A mapping definition can either:\n - map the property to a column or table\n - model nested properties of the current property (using `fields`)",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "properties": {
+        "fields": {
+          "$ref": "#/definitions/fields"
+        },
+        "toVarcharMapping": {
+          "title": "toString mapping definition",
+          "type": "object",
+          "description": "Maps the selected document property to an Exasol `VARCHAR`, column.",
+          "properties": {
+            "varcharColumnSize": {
+              "$ref": "#/definitions/varcharColumnSize"
+            },
+            "overflowBehaviour": {
+              "default": "TRUNCATE",
+              "description": "Behaviour to apply in case a value exceeds the size of the VARCHAR column.\n- TRUNCATE: truncate the string\n- NULL: use null instead\n- ABORT: abort whole query",
+              "enum": [
+                "TRUNCATE",
+                "ABORT",
+                "NULL"
+              ]
+            },
+            "destinationName": {
+              "type": "string",
+              "description": "Name of the Exasol VARCHAR column"
+            },
+            "nonStringBehaviour": {
+              "description": "Behaviour to apply in case a value is not a string\n- `NULL`: use NULL instead\n- `ABORT`: abort whole query\n- `CONVERT_OR_NULL`: try to convert the value to string. If not possible use NULL.\n- `CONVERT_OR_ABORT`: try to convert the value to string. If not possible abort the whole query.",
+              "default": "CONVERT_OR_ABORT",
+              "enum": [
+                "NULL",
+                "ABORT",
+                "CONVERT_OR_NULL",
+                "CONVERT_OR_ABORT"
+              ]
+            },
+            "description": {
+              "$ref": "#/definitions/description"
+            },
+            "required": {
+              "default": false,
+              "$ref": "#/definitions/required"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            }
+          },
+          "additionalProperties": false
+        },
+        "toJsonMapping": {
+          "title": "toJSON mapping definition",
+          "description": "Maps the selected document property and all its descendants to a JSON string. You can alos use this mapping directly for a whole document.",
+          "properties": {
+            "varcharColumnSize": {
+              "$ref": "#/definitions/varcharColumnSize"
+            },
+            "overflowBehaviour": {
+              "description": "Behaviour to apply in case a value exceeds the size of the Exasol column.\n- `NULL`: use `NULL` instead\n- `ABORT`: abort whole query",
+              "default": "ABORT",
+              "enum": [
+                "NULL",
+                "ABORT"
+              ]
+            },
+            "destinationName": {
+              "type": "string",
+              "description": "Name of the Exasol column. Required if used at root level. Else the name of the document property is used."
+            },
+            "description": {
+              "$ref": "#/definitions/description"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            }
+          },
+          "additionalProperties": false
+        },
+        "toDecimalMapping": {
+          "title": "toDecimal mapping definition",
+          "description": "Maps the selected document property to an Exasol `DECIMAL` column.",
+          "properties": {
+            "decimalPrecision": {
+              "type": "integer",
+              "description": "Precision of the Exasol `DECIMAL` type. See https://docs.exasol.com/sql_references/data_types/datatypedetails.htm\n\ndefault = 18",
+              "default": 18
+            },
+            "decimalScale": {
+              "type": "integer",
+              "description": "Scale of the Exasol `DECIMAL` type. See https://docs.exasol.com/sql_references/data_types/datatypedetails.htm\n\ndefault = 0",
+              "default": 0
+            },
+            "overflowBehaviour": {
+              "description": "Behaviour to apply in case a value exceeds the size of the `DECIMAL` column.\n- NULL: use `NULL` instead\n- ABORT: abort whole query",
+              "default": "ABORT",
+              "enum": [
+                "NULL",
+                "ABORT"
+              ]
+            },
+            "notNumericBehaviour": {
+              "description": "Behaviour to apply in case a value is not a number\n- `NULL`: use NULL instead\n `ABORT`: abort whole query",
+              "default": "ABORT",
+              "enum": [
+                "NULL",
+                "ABORT"
+              ]
+            },
+            "destinationName": {
+              "type": "string",
+              "description": "Name of the Exasol column.\n\nDefault: name of the document property"
+            },
+            "description": {
+              "$ref": "#/definitions/description"
+            },
+            "key": {
+              "$ref": "#/definitions/key"
+            }
+          },
+          "additionalProperties": false
+        },
+        "toTableMapping": {
+          "title": "toTable mapping definition",
+          "description": "This mapping is used for normalizing documents to table structures. It creates a new table in the resulting virtual schema named: \\<NAME_OF_PARENT\\>_\\<GIVEN_NAME\\>.\n\n You can define the columns of this table using the mapping property. If the parent table defines a key using one or more `toVarcharMappings` for a key or secondary index in the document database, this will be used as foreign key.",
+          "properties": {
+            "destinationTable": {
+              "$ref": "#/definitions/destinationTable"
+            },
+            "mapping": {
+              "$ref": "#/definitions/mappingDefinition",
+              "description": "Defines the mapping for the columns of the new table. If the document list contains non-objects (like strings) here, you can directly use `toVarcharMapping` here. Otherwise, if the list contains objects, you can define mappings for the nested properties using `fields`."
+            },
+            "description": {
+              "$ref": "#/definitions/description"
+            }
+          },
+          "required": [
+            "mapping"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "description": {
+      "type": "string",
+      "title": "Optional description",
+      "description": "Using this property you can provide documentation."
+    },
+    "required": {
+      "type": "boolean",
+      "default": false,
+      "description": "If this property is set to `true`, queries will abort if the given mapping cannot find a single document. Else, the query will continue and set this cell to a default value. By default this is property is set to `false`."
+    },
+    "key": {
+      "type": "string",
+      "enum": [
+        "local",
+        "global"
+      ],
+      "description": "Setting this property marks a column as key.\n\n Key columns are used as foreign keys from `ToTableMappings` for nested lists. \n\nA key can either be local or global. A global key must be unique over all rows of the table. A local key must only be unique in the scope of the nested list."
+    }
+  },
+  "type": "object",
+  "title": "The Root Schema - Defines the mapping for a document.",
+  "description": "The structure of this mapping definition follows the structure of the document data. This object represents the document root. Its properties are modeled in the `fields` property of this object. You only need to model properties of the document that you want to map. \n\n You can define multiple mapping to map different types of documents (different tables or collections). Each of these objects must be stored in a single `.json` file and get uploaded to an directory in BucketFS.",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "source",
+    "destinationTable",
+    "mapping"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to the EDML schema. Setting this is required so that IDEs can assist you while writing your definition.",
+      "enum": [
+        "https://schemas.exasol.com/edml-1.0.0.json",
+        "../../main/resources/schemas/edml-1.0.0.json",
+        "https://schemas.exasol.com/edml-1.1.0.json",
+        "../../main/resources/schemas/edml-1.1.0.json"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "title": "Source reference. (table name or resource identifier)",
+      "description": "The identifier of the document collection."
+    },
+    "destinationTable": {
+      "$ref": "#/definitions/destinationTable"
+    },
+    "description": {
+      "$ref": "#/definitions/description"
+    },
+    "mapping": {
+      "$ref": "#/definitions/mappingDefinition",
+      "description": "Defines the mapping for the document's properties. Typically you want to define `fields` here to define mappings for this document's properties. But you can also use `toJsonMapping` mapping here. In that case the whole document is mapped to a JSON string."
+    }
+  }
+}
