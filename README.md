@@ -7,7 +7,8 @@ This repository contains a collection of XML and JSON schemas, used for validato
 The EDML is a JSON-based domain specific language.
 You can use it to configure the mapping of document data to Exasol tables when using a [document virtual schema](https://github.com/exasol/virtual-schema-common-document).
 
-* [1.0.0 (current)](edml-1.0.0.json) ([reference](https://exasol.github.io/dynamodb-virtual-schema/schema_doc/index.html))
+* [1.1.0 (current)](edml-1.1.0.json) ([reference](https://exasol.github.io/virtual-schema-common-document/schema_doc/edml_1.1.0/index.html))
+* [1.0.0](edml-1.0.0.json) ([reference](https://exasol.github.io/virtual-schema-common-document/schema_doc/edml_1.0.0/index.html))
 
 ## Information for Contributors
 
