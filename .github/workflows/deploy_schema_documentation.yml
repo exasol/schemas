@@ -12,8 +12,8 @@ jobs:
       - name: Install and Build
         run: |
           sudo npm install -g bootprint bootprint-json-schema
-          mkdir /tmp/gh_pages/
-          bootprint json-schema error_code_report-0.1.0.json /tmp/gh_pages/
+          mkdir gh_pages/
+          bootprint json-schema error_code_report-0.1.0.json gh_pages/
 
       - name: Install SSH Client 🔑
         uses: webfactory/ssh-agent@v0.2.0
@@ -25,6 +25,6 @@ jobs:
         with:
           ssh: true
           BRANCH: gh-pages
-          FOLDER: /tmp/gp_pages/
+          FOLDER: gp_pages/
           SINGLE_COMMIT: true
           CLEAN: true
