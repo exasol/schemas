@@ -25,6 +25,6 @@ jobs:
         with:
           ssh: true
           BRANCH: gh-pages
-          FOLDER: gp_pages/
+          FOLDER: gh_pages/
           SINGLE_COMMIT: true
           CLEAN: true
