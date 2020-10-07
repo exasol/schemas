@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.exasol.com/error_code_report-0.1.0.json",
+  "type": "object",
+  "title": "Exasol error code report schema.",
+  "description": "This schema defines the structure of a report about error codes in an Exasol project.",
+  "additionalProperties": false,
+  "required": [
+    "projectName",
+    "projectVersion",
+    "errorsCodes"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to the schema. Setting this is required so that IDEs can assist you while writing your definition.",
+      "enum": [
+        "https://schemas.exasol.com/error_code_report-0.1.0.json",
+        "./error_code_report-0.1.0.json"
+      ]
+    },
+    "projectName": {
+      "type": "string",
+      "title": "Name of the project.",
+      "description": "Typically the GitHub repository name."
+    },
+    "projectVersion": {
+      "type": "string",
+      "title": "Version tag of the reported release."
+    },
+    "errorsCodes": {
+      "type": "array",
+      "additionalItems": {
+        "$ref": "#/definitions/errorCode"
+      },
+      "description": "List of `errorCodes` declared in this project version."
+    }
+  },
+  "definitions": {
+    "errorCode": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "string",
+          "pattern": "^[WFE]-[A-Z0-9]+(-[A-Z0-9]+)?-\\d$"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message without error code. The exception message can contain placeholders like `##NAME##`. In that case you must define the placeholder in `messagePlaceholders`."
+        },
+        "messagePlaceholders": {
+          "type": "array",
+          "description": "List of placeholders that are used int the message.",
+          "additionalItems": {
+            "type": "object",
+            "properties": {
+              "placeholder": {
+                "type": "string",
+                "description": "Placeholder used in the message without `##`."
+              },
+              "description": {
+                "type": "string",
+                "description": "Description for the placeholder."
+              }
+            },
+            "required": ["placeholder", "description"]
+          }
+        },
+        "potentialCauses": {
+          "type": "string",
+          "description": "Description of known potential causes."
+        },
+        "mitigations": {
+          "type": "array",
+          "additionalItems": {
+            "type": "string"
+          },
+          "description":"Description of known mitigations."
+        },
+        "sourceFile": {
+          "type": "string",
+          "description": "Source code file in that the error is thrown."
+        },
+        "sourceLine": {
+          "type": "number",
+          "description": "Source code line number in that the error is thrown."
+        },
+        "contextHash": {
+          "type": "string",
+          "description": "HasCode of the source code context around the throw command.\n\nIt can be used for detecting possible changes."
+        }
+      },
+      "required": [
+        "errorCode"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
