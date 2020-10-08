@@ -13,7 +13,7 @@
   "properties": {
     "$schema": {
       "type": "string",
-      "description": "Reference to the schema. Setting this is required so that IDEs can assist you while writing your definition.",
+      "description": "Reference to the schema. Setting this helps your IDE to assist you while writing the definition.",
       "enum": [
         "https://schemas.exasol.com/error_code_report-0.1.0.json",
         "./error_code_report-0.1.0.json"
