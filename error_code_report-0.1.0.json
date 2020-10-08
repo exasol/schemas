@@ -30,7 +30,7 @@
     },
     "errorsCodes": {
       "type": "array",
-      "additionalItems": {
+      "items": {
         "$ref": "#/definitions/errorCode"
       },
       "description": "List of `errorCodes` declared in this project version."
@@ -49,37 +49,26 @@
           "description": "Error message without error code. The exception message can contain placeholders like `##NAME##`. In that case you must define the placeholder in `messagePlaceholders`."
         },
         "messagePlaceholders": {
-          "type": "array",
+          "type": "object",
           "description": "List of placeholders that are used int the message.",
-          "additionalItems": {
-            "type": "object",
-            "properties": {
-              "placeholder": {
-                "type": "string",
-                "description": "Placeholder used in the message without `##`."
-              },
-              "description": {
-                "type": "string",
-                "description": "Description for the placeholder."
-              }
-            },
-            "required": ["placeholder", "description"]
+          "additionalProperties": {
+            "type": "string"
           }
         },
         "potentialCauses": {
           "type": "array",
           "description": "Description of known potential causes.",
-          "additionalItems": {
+          "items": {
             "type": "string",
             "description": "Description of known potential cause."
           }
         },
         "mitigations": {
           "type": "array",
-          "additionalItems": {
+          "items": {
             "type": "string"
           },
-          "description":"Description of known mitigations."
+          "description": "Description of known mitigations."
         },
         "sourceFile": {
           "type": "string",

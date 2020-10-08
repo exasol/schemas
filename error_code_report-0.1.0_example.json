@@ -6,11 +6,9 @@
     {
       "errorCode": "E-RR-1",
       "message": "Wrong release data ##DATE##",
-      "messagePlaceholders": [
-        {
-          "DATE": "The date that was found in the release letter."
-        }
-      ],
+      "messagePlaceholders": {
+        "DATE": "The date that was found in the release letter."
+      },
       "potentialCauses": [
         "You typed the wrong date.",
         "You system clock has the wrong date."
@@ -24,8 +22,8 @@
       "sourceLine": 10
     },
     {
-      "errorCode": "E-RR-2",
-      "message": "Another error"
+      "errorCode": "W-RR-2",
+      "message": "Some warning"
     }
   ]
 }
