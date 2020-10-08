@@ -72,15 +72,15 @@
         },
         "sourceFile": {
           "type": "string",
-          "description": "Source code file in that the error is thrown."
+          "description": "Source code file where that the exception is thrown."
         },
         "sourceLine": {
           "type": "number",
-          "description": "Source code line number in that the error is thrown."
+          "description": "Source code line number within the the source file where the exception is thrown."
         },
         "contextHash": {
           "type": "string",
-          "description": "HasCode of the source code context around the throw command.\n\nIt can be used for detecting possible changes."
+          "description": "HashCode of the source code context around where the exception is thrown.\n\nIt can be used for detecting possible changes among versions."
         }
       },
       "required": [
