@@ -67,8 +67,12 @@
           }
         },
         "potentialCauses": {
-          "type": "string",
-          "description": "Description of known potential causes."
+          "type": "array",
+          "description": "Description of known potential causes.",
+          "additionalItems": {
+            "type": "string",
+            "description": "Description of known potential cause."
+          }
         },
         "mitigations": {
           "type": "array",
