@@ -50,7 +50,7 @@
         },
         "messagePlaceholders": {
           "type": "object",
-          "description": "List of placeholders that are used int the message.",
+          "description": "Map (placeholder -> description) of placeholders that are used in the message.\n\nUse the placeholder without `##` as key and the description as value.",
           "additionalProperties": {
             "type": "string"
           }
