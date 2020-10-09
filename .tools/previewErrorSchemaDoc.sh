@@ -7,8 +7,6 @@ readonly doc_dir='/tmp/doc/'
 prepare() {
     verify_current_directory "$root_dir"
 }
-
-
 verify_current_directory() {
     if [[ $(basename "$PWD") != "$root_dir" ]]
     then

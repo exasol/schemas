@@ -8,7 +8,7 @@
   "required": [
     "projectName",
     "projectVersion",
-    "errorsCodes"
+    "errorCodes"
   ],
   "properties": {
     "$schema": {
@@ -28,7 +28,7 @@
       "type": "string",
       "title": "Version tag of the reported release."
     },
-    "errorsCodes": {
+    "errorCodes": {
       "type": "array",
       "items": {
         "$ref": "#/definitions/errorCode"
@@ -42,7 +42,7 @@
       "properties": {
         "errorCode": {
           "type": "string",
-          "pattern": "^[WFE]-[A-Z0-9]+(-[A-Z0-9]+)?-\\d$"
+          "pattern": "^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)?-\\d$"
         },
         "message": {
           "type": "string",
