@@ -31,12 +31,12 @@
     "errorCodes": {
       "type": "object",
       "patternProperties": {
-        "^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)?-\\d$": {
+        "^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)?-\\d+$": {
           "$ref": "#/definitions/errorCodeDetails"
         }
       },
       "additionalProperties": false,
-      "description": "Object that maps the error code to an `errorCodeDetails` object describing the error code.\n\nThe error code must match `^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)?-\\d$`."
+      "description": "Object that maps the error code to an `errorCodeDetails` object describing the error code.\n\nThe error code must match `^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)?-\\d+$`."
     }
   },
   "definitions": {
