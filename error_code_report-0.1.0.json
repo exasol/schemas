@@ -29,31 +29,38 @@
       "title": "Version tag of the reported release."
     },
     "errorCodes": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/errorCode"
+      "type": "object",
+      "patternProperties": {
+        "^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)?-\\d$": {
+          "$ref": "#/definitions/errorCodeDetails"
+        }
       },
-      "description": "List of `errorCodes` declared in this project version."
+      "additionalProperties": false,
+      "description": "Object that maps the error code to an `errorCodeDetails` object describing the error code.\n\nThe error code must match `^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)?-\\d$`."
     }
   },
   "definitions": {
-    "errorCode": {
+    "errorCodeDetails": {
       "type": "object",
       "properties": {
-        "errorCode": {
-          "type": "string",
-          "pattern": "^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)?-\\d$"
-        },
         "message": {
           "type": "string",
-          "description": "Error message without error code. The exception message can contain placeholders like `##NAME##`. In that case you must define the placeholder in `messagePlaceholders`."
+          "description": "Error message (the message of the exception) without error code. The exception message can contain placeholders like `{{NAME}}`. In that case you must define the placeholder in `messagePlaceholders`."
         },
         "messagePlaceholders": {
           "type": "object",
-          "description": "Map (placeholder -> description) of placeholders that are used in the message.\n\nUse the placeholder without `##` as key and the description as value.",
+          "description": "Map (placeholder -> description) of placeholders that are used in the message.\n\nUse the placeholder without `{{` and `}}` as key and the description as value.",
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "description": {
+          "type": "string",
+          "description": "Additional information about what this error code means or more context about what its purpose is."
+        },
+        "internalDescription": {
+          "type": "string",
+          "description": "Additional description for developers."
         },
         "potentialCauses": {
           "type": "array",
@@ -83,9 +90,6 @@
           "description": "HashCode of the source code context around where the exception is thrown.\n\nIt can be used for detecting possible changes among versions."
         }
       },
-      "required": [
-        "errorCode"
-      ],
       "additionalProperties": false
     }
   }
