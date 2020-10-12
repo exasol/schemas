@@ -1,0 +1,29 @@
+{
+  "$schema": "./error_code_report-0.1.0.json",
+  "projectName": "release-robot",
+  "projectVersion": "1.2.3",
+  "errorCodes": {
+    "E-RR-1": {
+      "message": "Wrong release data {{DATE}}",
+      "messagePlaceholders": {
+        "DATE": "The date that was found in the release letter."
+      },
+      "description": "Exception that is thrown if the date in the release letter does not match the current date.",
+      "internalDescription": "Some hints for developers.",
+      "potentialCauses": [
+        "You typed the wrong date.",
+        "You system clock has the wrong date."
+      ],
+      "mitigations": [
+        "Change the date in the release letter.",
+        "Set your clock."
+      ],
+      "contextHash": "SOME_HASH",
+      "sourceFile": "releaseRobot.java",
+      "sourceLine": 10
+    },
+    "W-RR-2": {
+      "message": "Some warning"
+    }
+  }
+}
