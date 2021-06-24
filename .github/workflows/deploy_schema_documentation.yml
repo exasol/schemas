@@ -17,7 +17,7 @@ jobs:
           bootprint json-schema error_code_report-0.2.0.json gh_pages/error_code_report-0.2.0
 
       - name: Install SSH Client 🔑
-        uses: webfactory/ssh-agent@v0.2.0
+        uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
