@@ -13,8 +13,13 @@ jobs:
         run: |
           sudo npm install -g bootprint bootprint-json-schema
           mkdir gh_pages/
+
           bootprint json-schema error_code_report-0.1.0.json gh_pages/error_code_report-0.1.0
           bootprint json-schema error_code_report-0.2.0.json gh_pages/error_code_report-0.2.0
+
+          bootprint json-schema edml-1.0.0.json gh_pages/edml-1.0.0
+          bootprint json-schema edml-1.1.0.json gh_pages/edml-1.1.0
+          bootprint json-schema edml-1.2.0.json gh_pages/edml-1.2.0
 
       - name: Install SSH Client 🔑
         uses: webfactory/ssh-agent@v0.5.3
