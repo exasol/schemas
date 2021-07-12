@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <title>Bootprint</title>
+                                                         </head>
+<body>
+<div class="container">
+    <div id="definition-The-Root-Schema---Defines-the-mapping-for-a-document." class="panel panel-definition">
+            <div class="panel-heading">
+                    <h3 class="panel-title">The Root Schema - Defines the mapping for a document.</h3>
+            </div>
+        <div class="panel-body">
+                    <section class="json-schema-description">
+                        <p>The structure of this mapping definition follows the structure of the document data. This object represents the document root. Its properties are modeled in the <code>fields</code> property of this object. You only need to model properties of the document that you want to map. </p>
+                <p> You can define multiple mapping to map different types of documents (different tables or collections). Each of these objects must be stored in a single <code>.json</code> file and get uploaded to an directory in BucketFS.</p>
+                
+                    </section>
+                
+                        <section class="json-schema-properties">
+                            <dl>
+                                    <dt data-property-name="-schema">
+                                        <span class="json-property-name">$schema:</span>
+                                        
+                                        <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &isin; {
+                                                        <span class="json-property-enum-item">https://schemas.exasol.com/edml-1.0.0.json</span>
+                                                    ,
+                                                        <span class="json-property-enum-item">../../main/resources/schemas/edml-1.0.0.json</span>
+                                                    
+                                                }
+                                                </span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-required"></span>
+                                    </dt>
+                                    <dd>
+                                        <p>Reference to the EDML schema. Setting this is required so that IDEs can assist you while writing your definition.</p>
+                        
+                                        <div class="json-inner-schema">
+                                            
+                                        </div>
+                                    </dd>
+                                    <dt data-property-name="source">
+                                        <span class="json-property-name">source:</span>
+                                        
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-required"></span>
+                                    </dt>
+                                    <dd>
+                                        <p>The identifier of the document collection.</p>
+                        
+                                        <div class="json-inner-schema">
+                                            
+                                        </div>
+                                    </dd>
+                                    <dt data-property-name="destinationTable">
+                                        <span class="json-property-name">destinationTable:</span>
+                                        
+                                        <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/destinationTable">destinationTable</a>
+                                        </span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-required"></span>
+                                    </dt>
+                                    <dd>
+                                        
+                                        <div class="json-inner-schema">
+                                            
+                                        </div>
+                                    </dd>
+                                    <dt data-property-name="description">
+                                        <span class="json-property-name">description:</span>
+                                        
+                                        <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/description">description</a>
+                                        </span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                    </dt>
+                                    <dd>
+                                        
+                                        <div class="json-inner-schema">
+                                            
+                                        </div>
+                                    </dd>
+                                    <dt data-property-name="mapping">
+                                        <span class="json-property-name">mapping:</span>
+                                        
+                                        <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/mappingDefinition">mappingDefinition</a>
+                                        </span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-required"></span>
+                                    </dt>
+                                    <dd>
+                                        <p>Defines the mapping for the document&#39;s properties. Typically you want to define <code>fields</code> here to define mappings for this document&#39;s properties. But you can also use <code>toJsonMapping</code> mapping here. In that case the whole document is mapped to a JSON string.</p>
+                        
+                                        <div class="json-inner-schema">
+                                            
+                                        </div>
+                                    </dd>
+                            </dl>
+                        </section>
+        </div>
+    </div>    <h2>Definitions</h2>
+                <div id="definition-description" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/description"></a>description:
+                                    <span class="json-property-type">
+                <span class="json-property-type">string</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-description">
+                                    <p>Using this property you can provide documentation.</p>
+                            
+                                </section>
+                            
+                    </div>
+                </div>        <div id="definition-destinationTable" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/destinationTable"></a>destinationTable:
+                                    <span class="json-property-type">
+                <span class="json-property-type">string</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-description">
+                                    <p>The name of the resulting table in Exasol.</p>
+                            
+                                </section>
+                            
+                    </div>
+                </div>        <div id="definition-fields" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/fields"></a>fields:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-description">
+                                    <p>This definition defines the expected nested properties of the current property. For each of the nested properties you can again define a mapping. You only need to define the properties you want to map. </p>
+                            <p><strong>Properties</strong>:</p>
+                            <p>PROPERTY_NAME: mappingDefinition</p>
+                            <p>It must be specified a least one column.</p>
+                            
+                                </section>
+                            
+                                        <section class="json-schema-additionalProperties">
+                                            <span class="json-property-type">
+                                        <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/mappingDefinition">mappingDefinition</a>
+                                        </span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                        </span>
+                                            
+                                        </section>
+                    </div>
+                </div>        <div id="definition-key" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/key"></a>key:
+                                    <span class="json-property-type">
+                <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &isin; {
+                                <span class="json-property-enum-item">local</span>
+                            ,
+                                <span class="json-property-enum-item">global</span>
+                            
+                        }
+                        </span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-description">
+                                    <p>Setting this property marks a column as key.</p>
+                            <p> Key columns are used as foreign keys from <code>ToTableMappings</code> for nested lists. </p>
+                            <p>A key can either be local or global. A global key must be unique over all rows of the table. A local key must only be unique in the scope of the nested list.</p>
+                            
+                                </section>
+                            
+                    </div>
+                </div>        <div id="definition-mappingDefinition" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/mappingDefinition"></a>mappingDefinition:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-description">
+                                    <p>A mapping definition can either:</p>
+                            <ul>
+                            <li>map the property to a column or table</li>
+                            <li>model nested properties of the current property (using <code>fields</code>)</li>
+                            </ul>
+                            
+                                </section>
+                            
+                                    <section class="json-schema-properties">
+                                        <dl>
+                                                <dt data-property-name="fields">
+                                                    <span class="json-property-name">fields:</span>
+                                                    
+                                                    <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/fields">fields</a>
+                                                    </span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="toVarcharMapping">
+                                                    <span class="json-property-name">toVarcharMapping:</span>
+                                                    
+                                                    <span class="json-property-type">object</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Maps the selected document property to an Exasol <code>VARCHAR</code>, column.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                                <section class="json-schema-properties">
+                                                                    <dl>
+                                                                            <dt data-property-name="varcharColumnSize">
+                                                                                <span class="json-property-name">varcharColumnSize:</span>
+                                                                                
+                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/varcharColumnSize">varcharColumnSize</a>
+                                                                                </span>
+                                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                                
+                                                                            </dt>
+                                                                            <dd>
+                                                                                
+                                                                                <div class="json-inner-schema">
+                                                                                    
+                                                                                </div>
+                                                                            </dd>
+                                                                            <dt data-property-name="overflowBehaviour">
+                                                                                <span class="json-property-name">overflowBehaviour:</span>
+                                                                                
+                                                                                <span class="json-property-type">object</span>    <span class="json-property-enum" title="Possible values">, x &isin; {
+                                                                                                <span class="json-property-enum-item">TRUNCATE</span>
+                                                                                                (default)
+                                                                                            ,
+                                                                                                <span class="json-property-enum-item">ABORT</span>
+                                                                                            ,
+                                                                                                <span class="json-property-enum-item">NULL</span>
+                                                                                            
+                                                                                        }
+                                                                                        </span>
+                                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                                
+                                                                            </dt>
+                                                                            <dd>
+                                                                                <p>Behaviour to apply in case a value exceeds the size of the VARCHAR column.</p>
+                                                                <ul>
+                                                                <li>TRUNCATE: truncate the string</li>
+                                                                <li>NULL: use null instead</li>
+                                                                <li>ABORT: abort whole query</li>
+                                                                </ul>
+                                                                
+                                                                                <div class="json-inner-schema">
+                                                                                    
+                                                                                </div>
+                                                                            </dd>
+                                                                            <dt data-property-name="destinationName">
+                                                                                <span class="json-property-name">destinationName:</span>
+                                                                                
+                                                                                <span class="json-property-type">string</span>
+                                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                                
+                                                                            </dt>
+                                                                            <dd>
+                                                                                <p>Name of the Exasol VARCHAR column</p>
+                                                                
+                                                                                <div class="json-inner-schema">
+                                                                                    
+                                                                                </div>
+                                                                            </dd>
+                                                                            <dt data-property-name="description">
+                                                                                <span class="json-property-name">description:</span>
+                                                                                
+                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/description">description</a>
+                                                                                </span>
+                                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                                
+                                                                            </dt>
+                                                                            <dd>
+                                                                                
+                                                                                <div class="json-inner-schema">
+                                                                                    
+                                                                                </div>
+                                                                            </dd>
+                                                                            <dt data-property-name="required">
+                                                                                <span class="json-property-name">required:</span>
+                                                                                
+                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/required">required</a>
+                                                                                </span>
+                                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                                
+                                                                            </dt>
+                                                                            <dd>
+                                                                                
+                                                                                <div class="json-inner-schema">
+                                                                                    
+                                                                                </div>
+                                                                            </dd>
+                                                                            <dt data-property-name="key">
+                                                                                <span class="json-property-name">key:</span>
+                                                                                
+                                                                                <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/key">key</a>
+                                                                                </span>
+                                                                                <span class="json-property-range" title="Value limits"></span>
+                                                                                
+                                                                            </dt>
+                                                                            <dd>
+                                                                                
+                                                                                <div class="json-inner-schema">
+                                                                                    
+                                                                                </div>
+                                                                            </dd>
+                                                                    </dl>
+                                                                </section>
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="toJsonMapping">
+                                                    <span class="json-property-name">toJsonMapping:</span>
+                                                    
+                                                    <span class="json-property-type">object</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Maps the selected document property and all its descendants to a JSON string. You can alos use this mapping directly for a whole document.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                            <section class="json-schema-properties">
+                                                                <dl>
+                                                                        <dt data-property-name="varcharColumnSize">
+                                                                            <span class="json-property-name">varcharColumnSize:</span>
+                                                                            
+                                                                            <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/varcharColumnSize">varcharColumnSize</a>
+                                                                            </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="overflowBehaviour">
+                                                                            <span class="json-property-name">overflowBehaviour:</span>
+                                                                            
+                                                                            <span class="json-property-type">object</span>    <span class="json-property-enum" title="Possible values">, x &isin; {
+                                                                                            <span class="json-property-enum-item">NULL</span>
+                                                                                        ,
+                                                                                            <span class="json-property-enum-item">ABORT</span>
+                                                                                            (default)
+                                                                                        
+                                                                                    }
+                                                                                    </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            <p>Behaviour to apply in case a value exceeds the size of the Exasol column.</p>
+                                                            <ul>
+                                                            <li><code>NULL</code>: use <code>NULL</code> instead</li>
+                                                            <li><code>ABORT</code>: abort whole query</li>
+                                                            </ul>
+                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="destinationName">
+                                                                            <span class="json-property-name">destinationName:</span>
+                                                                            
+                                                                            <span class="json-property-type">string</span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            <p>Name of the Exasol column. Required if used at root level. Else the name of the document property is used.</p>
+                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="description">
+                                                                            <span class="json-property-name">description:</span>
+                                                                            
+                                                                            <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/description">description</a>
+                                                                            </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="key">
+                                                                            <span class="json-property-name">key:</span>
+                                                                            
+                                                                            <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/key">key</a>
+                                                                            </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                </dl>
+                                                            </section>
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="toDecimalMapping">
+                                                    <span class="json-property-name">toDecimalMapping:</span>
+                                                    
+                                                    <span class="json-property-type">object</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Maps the selected document property to an Exasol <code>DECIMAL</code> column.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                            <section class="json-schema-properties">
+                                                                <dl>
+                                                                        <dt data-property-name="decimalPrecision">
+                                                                            <span class="json-property-name">decimalPrecision:</span>
+                                                                            
+                                                                            <span class="json-property-type">integer</span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                                    <span class="json-property-default-value">18</span>
+                                                                        </dt>
+                                                                        <dd>
+                                                                            <p>Precision of the Exasol <code>DECIMAL</code> type. See <a href="https://docs.exasol.com/sql_references/data_types/datatypedetails.htm">https://docs.exasol.com/sql_references/data_types/datatypedetails.htm</a></p>
+                                                            <p>default = 18</p>
+                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="decimalScale">
+                                                                            <span class="json-property-name">decimalScale:</span>
+                                                                            
+                                                                            <span class="json-property-type">integer</span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            <p>Scale of the Exasol <code>DECIMAL</code> type. See <a href="https://docs.exasol.com/sql_references/data_types/datatypedetails.htm">https://docs.exasol.com/sql_references/data_types/datatypedetails.htm</a></p>
+                                                            <p>default = 0</p>
+                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="overflowBehaviour">
+                                                                            <span class="json-property-name">overflowBehaviour:</span>
+                                                                            
+                                                                            <span class="json-property-type">object</span>    <span class="json-property-enum" title="Possible values">, x &isin; {
+                                                                                            <span class="json-property-enum-item">NULL</span>
+                                                                                        ,
+                                                                                            <span class="json-property-enum-item">ABORT</span>
+                                                                                            (default)
+                                                                                        
+                                                                                    }
+                                                                                    </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            <p>Behaviour to apply in case a value exceeds the size of the <code>DECIMAL</code> column.</p>
+                                                            <ul>
+                                                            <li>NULL: use <code>NULL</code> instead</li>
+                                                            <li>ABORT: abort whole query</li>
+                                                            </ul>
+                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="notNumericBehaviour">
+                                                                            <span class="json-property-name">notNumericBehaviour:</span>
+                                                                            
+                                                                            <span class="json-property-type">object</span>    <span class="json-property-enum" title="Possible values">, x &isin; {
+                                                                                            <span class="json-property-enum-item">NULL</span>
+                                                                                        ,
+                                                                                            <span class="json-property-enum-item">ABORT</span>
+                                                                                            (default)
+                                                                                        
+                                                                                    }
+                                                                                    </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            <p>Behaviour to apply in case a value is not a number</p>
+                                                            <ul>
+                                                            <li><code>NULL</code>: use NULL instead
+                                                            <code>ABORT</code>: abort whole query</li>
+                                                            </ul>
+                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="destinationName">
+                                                                            <span class="json-property-name">destinationName:</span>
+                                                                            
+                                                                            <span class="json-property-type">string</span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            <p>Name of the Exasol column.</p>
+                                                            <p>Default: name of the document property</p>
+                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="description">
+                                                                            <span class="json-property-name">description:</span>
+                                                                            
+                                                                            <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/description">description</a>
+                                                                            </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="key">
+                                                                            <span class="json-property-name">key:</span>
+                                                                            
+                                                                            <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/key">key</a>
+                                                                            </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                </dl>
+                                                            </section>
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="toTableMapping">
+                                                    <span class="json-property-name">toTableMapping:</span>
+                                                    
+                                                    <span class="json-property-type">object</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>This mapping is used for normalizing documents to table structures. It creates a new table in the resulting virtual schema named: &lt;NAME_OF_PARENT&gt;_&lt;GIVEN_NAME&gt;.</p>
+                                    <p> You can define the columns of this table using the mapping property. If the parent table defines a key using one or more <code>toVarcharMappings</code> for a key or secondary index in the document database, this will be used as foreign key.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                            <section class="json-schema-properties">
+                                                                <dl>
+                                                                        <dt data-property-name="destinationTable">
+                                                                            <span class="json-property-name">destinationTable:</span>
+                                                                            
+                                                                            <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/destinationTable">destinationTable</a>
+                                                                            </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="mapping">
+                                                                            <span class="json-property-name">mapping:</span>
+                                                                            
+                                                                            <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/mappingDefinition">mappingDefinition</a>
+                                                                            </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                                <span class="json-property-required"></span>
+                                                                        </dt>
+                                                                        <dd>
+                                                                            <p>Defines the mapping for the columns of the new table. If the document list contains non-objects (like strings) here, you can directly use <code>toVarcharMapping</code> here. Otherwise, if the list contains objects, you can define mappings for the nested properties using <code>fields</code>.</p>
+                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                        <dt data-property-name="description">
+                                                                            <span class="json-property-name">description:</span>
+                                                                            
+                                                                            <span class="json-property-type">    <a class="json-schema-ref" href="#/definitions/description">description</a>
+                                                                            </span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                        </dt>
+                                                                        <dd>
+                                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </dd>
+                                                                </dl>
+                                                            </section>
+                                                    </div>
+                                                </dd>
+                                        </dl>
+                                    </section>
+                    </div>
+                </div>        <div id="definition-required" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/required"></a>required:
+                                    <span class="json-property-type">
+                <span class="json-property-type">boolean</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                                <section class="json-schema-description">
+                                    <p>If this property is set to <code>true</code>, queries will abort if the given mapping cannot find a single document. Else, the query will continue and set this cell to a default value. By default this is property is set to <code>false</code>.</p>
+                            
+                                </section>
+                            
+                    </div>
+                </div>        <div id="definition-varcharColumnSize" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/varcharColumnSize"></a>varcharColumnSize:
+                                    <span class="json-property-type">
+                <span class="json-property-type">integer</span>
+                <span class="json-property-range" title="Value limits">, { x ∈ ℤ | 1 ≤ x ≤ 2000000 }</span>
+                
+                        <span class="json-property-default-value">254</span>
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                            
+                    </div>
+                </div></div>
+
+</body>
+</html>
