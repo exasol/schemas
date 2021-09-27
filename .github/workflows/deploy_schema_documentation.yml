@@ -20,6 +20,7 @@ jobs:
           bootprint json-schema edml-1.0.0.json gh_pages/edml-1.0.0
           bootprint json-schema edml-1.1.0.json gh_pages/edml-1.1.0
           bootprint json-schema edml-1.2.0.json gh_pages/edml-1.2.0
+          bootprint json-schema edml-1.3.0.json gh_pages/edml-1.3.0
 
       - name: Install SSH Client 🔑
         uses: webfactory/ssh-agent@v0.5.3
