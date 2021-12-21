@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.exasol.com/error_code_report-0.2.0.json",
+  "$id": "https://schemas.exasol.com/error_code_report-1.0.0.json",
   "type": "object",
   "title": "Exasol error code report schema.",
   "description": "This schema defines the structure of a report about error codes in an Exasol project.",
@@ -13,6 +13,8 @@
       "type": "string",
       "description": "Reference to the schema. Setting this helps your IDE to assist you while writing the definition.",
       "enum": [
+        "https://schemas.exasol.com/error_code_report-1.0.0.json",
+        "./error_code_report-1.0.0.json",
         "https://schemas.exasol.com/error_code_report-0.2.0.json",
         "./error_code_report-0.2.0.json"
       ]
