@@ -36,10 +36,6 @@
         "CONVERT_OR_ABORT"
       ]
     },
-    "additionalConfiguration": {
-      "type": "object",
-      "description": "Optional additional configuration options."
-    }
     "mappingDefinition": {
       "type": "object",
       "description": "A mapping definition can either:\n - map the property to a column or table\n - model nested properties of the current property (using `fields`)",
@@ -341,6 +337,10 @@
     },
     "description": {
       "$ref": "#/definitions/description"
+    },
+    "additionalConfiguration": {
+      "type": "object",
+      "description": "Optional additional configuration options."
     },
     "mapping": {
       "$ref": "#/definitions/mappingDefinition",
