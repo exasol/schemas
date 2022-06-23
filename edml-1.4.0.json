@@ -315,7 +315,19 @@
   "properties": {
     "$schema": {
       "type": "string",
-      "description": "Reference to the EDML schema. Setting this is required so that IDEs can assist you while writing your definition."
+      "description": "Reference to the EDML schema. Setting this is required so that IDEs can assist you while writing your definition.",
+      "enum": [
+        "https://schemas.exasol.com/edml-1.0.0.json",
+        "../../main/resources/schemas/edml-1.0.0.json",
+        "https://schemas.exasol.com/edml-1.1.0.json",
+        "../../main/resources/schemas/edml-1.1.0.json",
+        "https://schemas.exasol.com/edml-1.2.0.json",
+        "../../main/resources/schemas/edml-1.2.0.json",
+        "https://schemas.exasol.com/edml-1.3.0.json",
+        "../../main/resources/schemas/edml-1.3.0.json",
+        "https://schemas.exasol.com/edml-1.4.0.json",
+        "../../main/resources/schemas/edml-1.4.0.json"
+      ]
     },
     "source": {
       "type": "string",
