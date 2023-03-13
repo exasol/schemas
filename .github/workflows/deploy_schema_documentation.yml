@@ -12,6 +12,7 @@ jobs:
       - name: Verify generated files are up-to-date 🔎
         run: |
           sudo apt install pandoc
+          pandoc --version
           ./.tools/verify-generated-files.sh
 
       - name: Install and Build ⚙️
