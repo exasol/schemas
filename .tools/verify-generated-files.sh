@@ -6,24 +6,18 @@ set -o pipefail
 
 project_dir="$( cd "$(dirname "$0")/.." >/dev/null 2>&1 ; pwd -P )"
 
-generate_files() {
-    cd "$project_dir"
-    pandoc README.md > index.html
-}
+readme_file="$project_dir/README.md"
+readonly readme_file
+index_file="$project_dir/index.html"
+readonly index_file
 
-verify_no_changes() {
-    cd "$project_dir"
-    if [[ $(git status --porcelain) ]]; then
-      echo "🛑 Please generate files as described in doc/developers_guide.md"
-      echo "git status --no-pager"
-      git status
-      echo "git diff --no-pager"
-      git diff
-      exit 1
-    else
-      echo "✅ All files up-to-date"
-    fi
-}
-
-generate_files
-verify_no_changes
+if [ "$readme_file" -nt "$index_file" ]; then
+    echo "🛑 $readme_file is newer than $index_file. Please generate $index_file as described in doc/developers_guide.md"
+    ls -lah "$readme_file" "$index_file"
+    stat "$readme_file" "$index_file"
+    exit 1
+else
+    echo "✅ $readme_file is older than $index_file"
+    ls -lah "$readme_file" "$index_file"
+    stat "$readme_file" "$index_file"
+fi
