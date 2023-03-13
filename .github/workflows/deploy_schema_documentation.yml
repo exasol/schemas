@@ -9,7 +9,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install and Build
+      - name: Verify generated files are up-to-date 🔎
+        run: ./.tools/verify-generated-files.sh
+
+      - name: Install and Build ⚙️
         run: |
           sudo npm install -g bootprint bootprint-json-schema
           mkdir gh_pages/
