@@ -11,13 +11,23 @@ readonly readme_file
 index_file="$project_dir/index.html"
 readonly index_file
 
-if [ "$readme_file" -nt "$index_file" ]; then
+readme_timestamp=$(git log -1 --pretty="format:%ct" "$readme_file")
+readonly readme_timestamp
+index_timestamp=$(git log -1 --pretty="format:%ct" "$index_file")
+readonly index_timestamp
+
+print_git_log() {
+    echo "🗒️ git log -1 $readme_file:"
+    git log -1 "$readme_file"
+    echo "🗒️ git log -1 $index_file:"
+    git log -1 "$index_file"
+}
+
+if [ "$readme_timestamp" -gt "$index_timestamp" ]; then
     echo "🛑 $readme_file is newer than $index_file. Please generate $index_file as described in doc/developers_guide.md"
-    ls -lah "$readme_file" "$index_file"
-    stat "$readme_file" "$index_file"
+    print_git_log
     exit 1
 else
-    echo "✅ $readme_file is older than $index_file"
-    ls -lah "$readme_file" "$index_file"
-    stat "$readme_file" "$index_file"
+    echo "✅ $readme_file is not newer than $index_file"
+    print_git_log
 fi
