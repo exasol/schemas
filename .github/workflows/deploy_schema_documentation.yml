@@ -10,7 +10,9 @@ jobs:
           persist-credentials: false
 
       - name: Verify generated files are up-to-date 🔎
-        run: ./.tools/verify-generated-files.sh
+        run: |
+          sudo apt install pandoc
+          ./.tools/verify-generated-files.sh
 
       - name: Install and Build ⚙️
         run: |
