@@ -8,7 +8,7 @@ The EDML is a JSON-based domain specific language.
 
 You can use it to configure the mapping of document data to Exasol tables when using a [document virtual schema](https://github.com/exasol/virtual-schema-common-document), see the [EDML user guide](https://github.com/exasol/virtual-schema-common-document/blob/main/doc/user_guide/edml_user_guide.md).
 
-* [2.0.0 (current)](edml-1.5.0.json) ([reference](https://exasol.github.io/schemas/edml-2.0.0/index.html))
+* [2.0.0 (current)](edml-2.0.0.json) ([reference](https://exasol.github.io/schemas/edml-2.0.0/index.html))
 * [1.5.0](edml-1.5.0.json) ([reference](https://exasol.github.io/schemas/edml-1.5.0/index.html))
 * [1.4.0](edml-1.4.0.json) ([reference](https://exasol.github.io/schemas/edml-1.4.0/index.html))
 * [1.3.0](edml-1.3.0.json) ([reference](https://exasol.github.io/schemas/edml-1.3.0/index.html))
