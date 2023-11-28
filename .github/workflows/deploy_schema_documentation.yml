@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
@@ -27,17 +27,25 @@ jobs:
           bootprint json-schema edml-1.3.0.json gh_pages/edml-1.3.0
           bootprint json-schema edml-1.4.0.json gh_pages/edml-1.4.0
           bootprint json-schema edml-1.5.0.json gh_pages/edml-1.5.0
-
-      - name: Install SSH Client 🔑
-        uses: webfactory/ssh-agent@v0.7.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+          bootprint json-schema edml-2.0.0.json gh_pages/edml-2.0.0
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
-          ssh: true
-          BRANCH: gh-pages
-          FOLDER: gh_pages/
-          SINGLE_COMMIT: true
-          CLEAN: true
+          branch: gh-pages
+          folder: gh_pages/
+          single-commit: true
+          clean: true
+
+      - name: "Report Status"
+        if: always()
+        uses: ravsamhq/notify-slack-action@v2
+        with:
+          status: ${{ job.status }}
+          notify_when: "failure"
+          notification_title: "Schema Deployment: {workflow} has {status_message}"
+          message_format: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}>"
+          footer: "Linked to Repo <{repo_url}|{repo}>"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.INTEGRATION_TEAM_SLACK_NOTIFICATION_WEBHOOK }}
+  
