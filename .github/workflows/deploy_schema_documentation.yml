@@ -17,7 +17,7 @@ jobs:
           sudo npm install -g bootprint bootprint-json-schema
           mkdir gh_pages/
 
-          cp index.html gh_pages/index.html
+          cp index.html *.json gh_pages/
 
           bootprint json-schema error_code_report-0.1.0.json gh_pages/error_code_report-0.1.0
           bootprint json-schema error_code_report-0.2.0.json gh_pages/error_code_report-0.2.0
