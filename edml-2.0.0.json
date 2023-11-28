@@ -232,7 +232,7 @@
                 },
                 "toTimestampMapping": {
                     "title": "toTimestamp mapping definition",
-                    "description": "Maps the selected document property to an Exasol `TIMESTAMP` or `TIMESTAMP WITH LOCAL TIMEZONE` column.",
+                    "description": "Maps the selected document property to an Exasol `TIMESTAMP` column.",
                     "properties": {
                         "notTimestampBehavior": {
                             "$ref": "#/definitions/convertableMappingErrorBehaviour"
