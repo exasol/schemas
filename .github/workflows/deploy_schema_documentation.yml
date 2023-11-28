@@ -9,15 +9,18 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Verify generated files are up-to-date 🔎
-        run: ./.tools/verify-generated-files.sh
+      - name: Install pandoc
+        run: sudo apt install pandoc
+
+      - name: Generate index.html from README.md
+        run: pandoc README.md > gh_pages/index.html
 
       - name: Install and Build ⚙️
         run: |
           sudo npm install -g bootprint bootprint-json-schema
           mkdir gh_pages/
 
-          pandoc README.md > gh_pages/index.html
+          cp index.html gh_pages/index.html
 
           bootprint json-schema error_code_report-0.1.0.json gh_pages/error_code_report-0.1.0
           bootprint json-schema error_code_report-0.2.0.json gh_pages/error_code_report-0.2.0
