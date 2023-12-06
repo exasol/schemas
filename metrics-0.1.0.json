@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.exasol.com/metrics-0.1.0.json",
+  "$defs": {
+    "Rating": {
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "N/A"
+      ],
+      "title": "Rating",
+      "type": "string"
+    }
+  },
+  "description": "This schema defines the structure and values for reporting Q/A metrics for projects.",
+  "properties": {
+    "commit": {
+      "title": "Commit",
+      "type": "string"
+    },
+    "date": {
+      "format": "date-time",
+      "title": "Date",
+      "type": "string"
+    },
+    "coverage": {
+      "anyOf": [
+        {
+          "maximum": 100.0,
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "Percentage",
+      "title": "Coverage"
+    },
+    "maintainability": {
+      "$ref": "#/$defs/Rating"
+    },
+    "reliability": {
+      "$ref": "#/$defs/Rating"
+    },
+    "security": {
+      "$ref": "#/$defs/Rating"
+    },
+    "technical_debt": {
+      "$ref": "#/$defs/Rating"
+    }
+  },
+  "required": [
+    "commit",
+    "date",
+    "coverage",
+    "maintainability",
+    "reliability",
+    "security",
+    "technical_debt"
+  ],
+  "title": "Metrics",
+  "type": "object"
+}

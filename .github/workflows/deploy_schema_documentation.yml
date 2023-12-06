@@ -31,6 +31,8 @@ jobs:
           bootprint json-schema edml-1.5.0.json gh_pages/edml-1.5.0
           bootprint json-schema edml-2.0.0.json gh_pages/edml-2.0.0
 
+          bootprint json-schema metrics-0.1.0.json gh_pages/metrics-0.1.0
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
