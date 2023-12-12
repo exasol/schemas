@@ -19,39 +19,54 @@
   "description": "This schema defines the structure and values for reporting Q/A metrics for projects.",
   "properties": {
     "commit": {
+      "description": "Commit-Hash pointing to the state of the codebase used for generating the metrics.",
       "title": "Commit",
       "type": "string"
     },
     "date": {
+      "description": "The date and time when the metrics were recorded.",
       "format": "date-time",
       "title": "Date",
       "type": "string"
     },
     "coverage": {
-      "anyOf": [
-        {
-          "maximum": 100.0,
-          "minimum": 0.0,
-          "type": "number"
-        },
-        {
-          "type": "string"
-        }
-      ],
-      "description": "Percentage",
-      "title": "Coverage"
+      "description": "Represents the percentage of the codebase that is covered by automated tests.",
+      "maximum": 100.0,
+      "minimum": 0.0,
+      "title": "Coverage",
+      "type": "number"
     },
     "maintainability": {
-      "$ref": "#/$defs/Rating"
+      "allOf": [
+        {
+          "$ref": "#/$defs/Rating"
+        }
+      ],
+      "description": "Rating of how easily the codebase can be understood, adapted, and extended."
     },
     "reliability": {
-      "$ref": "#/$defs/Rating"
+      "allOf": [
+        {
+          "$ref": "#/$defs/Rating"
+        }
+      ],
+      "description": "Stability and dependability of the software. "
     },
     "security": {
-      "$ref": "#/$defs/Rating"
+      "allOf": [
+        {
+          "$ref": "#/$defs/Rating"
+        }
+      ],
+      "description": "Resilience against security threats and vulnerabilities."
     },
     "technical_debt": {
-      "$ref": "#/$defs/Rating"
+      "allOf": [
+        {
+          "$ref": "#/$defs/Rating"
+        }
+      ],
+      "description": "Amount of 'technical debt' in the project."
     }
   },
   "required": [
