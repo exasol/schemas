@@ -1,8 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://schemas.exasol.com/metrics-0.1.0.json",
+  "$id": "https://schemas.exasol.com/project-metrics-0.1.0.json",
   "$defs": {
     "Rating": {
+      "description": "A = Excellent\nB = Good\nC = Satisfactory (Ok, could be better though)\nD = Poor (Improvement necessary)\nE = Bad (Need for action)\nF = Broken (Get it fixed!)\nN/A = Rating is not available",
       "enum": [
         "A",
         "B",
