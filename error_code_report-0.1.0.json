@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.exasol.com/error_code_report-0.1.0.json",
+  "type": "object",
+  "title": "Exasol error code report schema.",
+  "description": "This schema defines the structure of a report about error codes in an Exasol project.",
+  "additionalProperties": false,
+  "required": [
+    "projectName",
+    "projectVersion",
+    "errorCodes"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to the schema. Setting this helps your IDE to assist you while writing the definition.",
+      "enum": [
+        "https://schemas.exasol.com/error_code_report-0.1.0.json",
+        "./error_code_report-0.1.0.json"
+      ]
+    },
+    "projectName": {
+      "type": "string",
+      "title": "Name of the project.",
+      "description": "Typically the GitHub repository name."
+    },
+    "projectVersion": {
+      "type": "string",
+      "title": "Version tag of the reported release."
+    },
+    "errorCodes": {
+      "type": "object",
+      "patternProperties": {
+        "^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)*-\\d+$": {
+          "$ref": "#/definitions/errorCodeDetails"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Object that maps the error code to an `errorCodeDetails` object describing the error code.\n\nThe error code must match `^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)*-\\d+$`."
+    }
+  },
+  "definitions": {
+    "errorCodeDetails": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Error message (the message of the exception) without error code. The exception message can contain placeholders like `{{NAME}}`. In that case you must define the placeholder in `messagePlaceholders`."
+        },
+        "messagePlaceholders": {
+          "type": "object",
+          "description": "Map (placeholder -> description) of placeholders that are used in the message.\n\nUse the placeholder without `{{` and `}}` as key and the description as value.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string",
+          "description": "Additional information about what this error code means or more context about what its purpose is."
+        },
+        "internalDescription": {
+          "type": "string",
+          "description": "Additional description for developers."
+        },
+        "potentialCauses": {
+          "type": "array",
+          "description": "Description of known potential causes.",
+          "items": {
+            "type": "string",
+            "description": "Description of known potential cause."
+          }
+        },
+        "mitigations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Description of known mitigations."
+        },
+        "sourceFile": {
+          "type": "string",
+          "description": "Source code file where that the exception is thrown."
+        },
+        "sourceLine": {
+          "type": "number",
+          "description": "Source code line number within the the source file where the exception is thrown."
+        },
+        "contextHash": {
+          "type": "string",
+          "description": "HashCode of the source code context around where the exception is thrown.\n\nIt can be used for detecting possible changes among versions."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

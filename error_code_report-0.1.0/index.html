@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="main.css">
+    <meta charset="UTF-8">
+    <title>Bootprint</title>
+                                                         </head>
+<body>
+<div class="container">
+    <div id="definition-Exasol-error-code-report-schema." class="panel panel-definition">
+            <div class="panel-heading">
+                    <h3 class="panel-title">Exasol error code report schema.</h3>
+            </div>
+        <div class="panel-body">
+                    <section class="json-schema-description">
+                        <p>This schema defines the structure of a report about error codes in an Exasol project.</p>
+                
+                    </section>
+                
+                        <section class="json-schema-properties">
+                            <dl>
+                                    <dt data-property-name="-schema">
+                                        <span class="json-property-name">$schema:</span>
+                                        
+                                        <span class="json-property-type">string</span>    <span class="json-property-enum" title="Possible values">, x &isin; {
+                                                        <span class="json-property-enum-item">https://schemas.exasol.com/error_code_report-0.1.0.json</span>
+                                                    ,
+                                                        <span class="json-property-enum-item">./error_code_report-0.1.0.json</span>
+                                                    
+                                                }
+                                                </span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                    </dt>
+                                    <dd>
+                                        <p>Reference to the schema. Setting this helps your IDE to assist you while writing the definition.</p>
+                        
+                                        <div class="json-inner-schema">
+                                            
+                                        </div>
+                                    </dd>
+                                    <dt data-property-name="projectName">
+                                        <span class="json-property-name">projectName:</span>
+                                        
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-required"></span>
+                                    </dt>
+                                    <dd>
+                                        <p>Typically the GitHub repository name.</p>
+                        
+                                        <div class="json-inner-schema">
+                                            
+                                        </div>
+                                    </dd>
+                                    <dt data-property-name="projectVersion">
+                                        <span class="json-property-name">projectVersion:</span>
+                                        
+                                        <span class="json-property-type">string</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-required"></span>
+                                    </dt>
+                                    <dd>
+                                        
+                                        <div class="json-inner-schema">
+                                            
+                                        </div>
+                                    </dd>
+                                    <dt data-property-name="errorCodes">
+                                        <span class="json-property-name">errorCodes:</span>
+                                        
+                                        <span class="json-property-type">object</span>
+                                        <span class="json-property-range" title="Value limits"></span>
+                                        
+                                            <span class="json-property-required"></span>
+                                    </dt>
+                                    <dd>
+                                        <p>Object that maps the error code to an <code>errorCodeDetails</code> object describing the error code.</p>
+                        <p>The error code must match <code>^[WFE]-[A-Z][A-Z0-9]*(-[A-Z][A-Z0-9]*)*-\d+$</code>.</p>
+                        
+                                        <div class="json-inner-schema">
+                                            
+                                        </div>
+                                    </dd>
+                            </dl>
+                        </section>
+        </div>
+    </div>    <h2>Definitions</h2>
+                <div id="definition-errorCodeDetails" class="panel panel-definition">
+                        <div class="panel-heading">
+                                <h3 class="panel-title"><a name="/definitions/errorCodeDetails"></a>errorCodeDetails:
+                                    <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+                
+                </span>
+                                </h3>
+                        </div>
+                    <div class="panel-body">
+                            
+                                    <section class="json-schema-properties">
+                                        <dl>
+                                                <dt data-property-name="message">
+                                                    <span class="json-property-name">message:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Error message (the message of the exception) without error code. The exception message can contain placeholders like <code>{{NAME}}</code>. In that case you must define the placeholder in <code>messagePlaceholders</code>.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="messagePlaceholders">
+                                                    <span class="json-property-name">messagePlaceholders:</span>
+                                                    
+                                                    <span class="json-property-type">object</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Map (placeholder -&gt; description) of placeholders that are used in the message.</p>
+                                    <p>Use the placeholder without <code>{{</code> and <code>}}</code> as key and the description as value.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                                    <section class="json-schema-additionalProperties">
+                                                                        <span class="json-property-type">
+                                                                    <span class="json-property-type">string</span>
+                                                                    <span class="json-property-range" title="Value limits"></span>
+                                                                    
+                                                                    </span>
+                                                                        
+                                                                    </section>
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="description">
+                                                    <span class="json-property-name">description:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Additional information about what this error code means or more context about what its purpose is.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="internalDescription">
+                                                    <span class="json-property-name">internalDescription:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Additional description for developers.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="potentialCauses">
+                                                    <span class="json-property-name">potentialCauses:</span>
+                                                    
+                                                    <span class="json-property-type">string[]</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Description of known potential causes.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                                        <section class="json-schema-array-items">
+                                                                            
+                                                                            <span class="json-property-type">string</span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                    <section class="json-schema-description">
+                                                                                        <p>Description of known potential cause.</p>
+                                                                                
+                                                                                    </section>
+                                                                                
+                                                                            </div>
+                                                                        </section>                </div>
+                                                </dd>
+                                                <dt data-property-name="mitigations">
+                                                    <span class="json-property-name">mitigations:</span>
+                                                    
+                                                    <span class="json-property-type">string[]</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Description of known mitigations.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                                        <section class="json-schema-array-items">
+                                                                            
+                                                                            <span class="json-property-type">string</span>
+                                                                            <span class="json-property-range" title="Value limits"></span>
+                                                                            
+                                                                            <div class="json-inner-schema">
+                                                                                
+                                                                            </div>
+                                                                        </section>                </div>
+                                                </dd>
+                                                <dt data-property-name="sourceFile">
+                                                    <span class="json-property-name">sourceFile:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Source code file where that the exception is thrown.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="sourceLine">
+                                                    <span class="json-property-name">sourceLine:</span>
+                                                    
+                                                    <span class="json-property-type">number</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>Source code line number within the the source file where the exception is thrown.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                                <dt data-property-name="contextHash">
+                                                    <span class="json-property-name">contextHash:</span>
+                                                    
+                                                    <span class="json-property-type">string</span>
+                                                    <span class="json-property-range" title="Value limits"></span>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <p>HashCode of the source code context around where the exception is thrown.</p>
+                                    <p>It can be used for detecting possible changes among versions.</p>
+                                    
+                                                    <div class="json-inner-schema">
+                                                        
+                                                    </div>
+                                                </dd>
+                                        </dl>
+                                    </section>
+                    </div>
+                </div></div>
+
+</body>
+</html>
