@@ -41,14 +41,36 @@ class Example:
 CLI = typer.Typer()
 
 
-@CLI.command(name="generate")
+@CLI.command()
 def generate_static_page(
-    schema_dir: Path = Path("./schemas"),
-    example_dir: Path = Path("./examples"),
-    output_dir: Path = Path("./gh-pages"),
+    schemas: Path = typer.Option(
+        help="The path to the directory containing JSON schemas."
+    ),
+    examples: Path = typer.Option(
+        help=(
+            "The path to the directory with example data instances. "
+            "These examples should conform to the JSON schemas provided and serve as reference implementations."
+        )
+    ),
+    destination: Path = typer.Option(
+        help="The target directory, to be created, where the generated static page contents will be written to."
+    ),
 ):
-    schemas = set(_json_files(schema_dir, output_type=Schema))
-    examples = set(_json_files(example_dir, output_type=Example))
+    """
+    This command to generates a static website based on provided JSON schemas and their corresponding example instances.
+
+    The static website created includes the following components:
+
+        - Overview Page: A summary page that introduces the contents and purpose of the schemas.
+
+        - JSON Schemas: The raw json schemas (so they can be referenced).
+
+        - Examples: Instances of data conforming to the JSON schemas, providing practical examples of usage.
+
+        - Human-Readable References: Each individual schema is accompanied by an overview page presenting the schema in a user-friendly  format.
+    """
+    schemas = set(_json_files(schemas, output_type=Schema))
+    examples = set(_json_files(examples, output_type=Example))
 
     with TemporaryDirectory() as tmpdir:
         tmpdir = Path(tmpdir)
@@ -56,10 +78,10 @@ def generate_static_page(
         _create_examples(examples, output_dir=tmpdir)
         _create_schema_references(schemas, output_dir=tmpdir)
         _create_index_file(examples, schemas, output_dir=tmpdir)
-        _copy_to_output_directory(src=tmpdir, dst=output_dir)
+        _copy_to_output_directory(src=tmpdir, dst=destination)
 
 
-def _json_files(path: Path, output_type: Type[Schema | Example]):
+def _json_files(path: Path, output_type: Type[Schema] | Type[Example]):
     files = path.glob("**/*.json")
     return (
         output_type(
@@ -95,7 +117,7 @@ def _grouped_examples(examples):
 def _copy_to_output_directory(src, dst):
     if dst.exists():
         print(
-            f"== Warning location not empty, deleting destination: {dst} ==",
+            f"!! Warning location not empty, deleting destination: {dst} !!",
             file=sys.stderr,
         )
         shutil.rmtree(dst)
