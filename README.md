@@ -66,6 +66,9 @@ This repository adheres to the principle of "convention over configuration", wit
 
 Deployment is managed through a cron job that automatically updates from the `gh-pages` branch every 5 minutes. The updated content is then published on [schemas.exasol.com](https://schemas.exasol.com).
 
+## Testing
+For testing purposes please deploy to the branch `gh-pages-test`.
+
 ## Setting up the Project / Development Environment
 
 ### Prerequisites
