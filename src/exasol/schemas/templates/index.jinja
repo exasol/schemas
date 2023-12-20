@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel=stylesheet type=text/css href=schema_doc.css>
+    <link rel=stylesheet type=text/css href=css/overpass300,400,600,800.css>
+    <link href=css/bootstrap-4.3.1.min.css rel=stylesheet>
+    <script src=js/bootstrap-4.3.1.min.js></script>
+    <link rel=stylesheet type=text/css href=css/schema_doc.css>
     <title>Exasol Schemas</title>
 </head>
-<body>
+<body onload=anchorOnLoad(); id=root>
 
 {% macro schema_list(schemas, examples) -%}
     <ul>
