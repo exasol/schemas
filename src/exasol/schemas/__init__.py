@@ -17,7 +17,6 @@ from json_schema_for_humans import generate
 from packaging.version import Version
 from rich.logging import RichHandler
 
-_FORMAT = "%(message)s"
 logging.basicConfig(
     level="NOTSET",
     format="%(message)s",
