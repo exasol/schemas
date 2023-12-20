@@ -69,7 +69,7 @@ def generate_static_page(
     ),
 ):
     """
-    This command to generates a static website based on provided JSON schemas and their corresponding example instances.
+    This command generates a static website based on provided JSON schemas and their corresponding example instances.
 
     The static website created includes the following components:
 
