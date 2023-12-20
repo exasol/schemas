@@ -46,5 +46,5 @@ def publish_to_test(ctx, version=None):
         )
         shutil.copytree(build_dir, checkout_path, dirs_exist_ok=True)
         ctx.run(f"git {git_dir} {work_tree} add {checkout_path}/")
-        ctx.run(f'git {git_dir} commit -m "Publish version: {version}"')
+        ctx.run(f'git {git_dir} commit --message="Publish version: {version}"')
         ctx.run(f"git {git_dir} push --force origin gh-pages-test")
