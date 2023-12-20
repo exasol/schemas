@@ -1,6 +1,6 @@
 # Schema Collection
 
-This repository hosts an collection of XML and JSON schemas.These schemas are primarily designed for validators and Integrated Development Environments (IDEs) that support auto-completion, enhancing the development experience.
+This repository hosts an collection of XML and JSON schemas. These schemas are primarily designed for validators and Integrated Development Environments (IDEs) that support auto-completion, enhancing the development experience.
 
 ## Schemas
 
