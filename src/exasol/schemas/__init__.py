@@ -12,9 +12,9 @@ from typing import Type
 
 import jinja2
 import json_schema_for_humans as json2schema
-from json_schema_for_humans.generation_configuration import GenerationConfiguration
 import typer
 from json_schema_for_humans import generate
+from json_schema_for_humans.generation_configuration import GenerationConfiguration
 from packaging.version import Version
 from rich.logging import RichHandler
 
@@ -150,7 +150,7 @@ def _create_schema_references(schemas, output_dir):
             json2schema.generate.generate_from_filename(
                 schema_file_name=schema.path,
                 result_file_name=f"{reference}",
-                config=GenerationConfiguration(template_name='js_offline')
+                config=GenerationConfiguration(template_name="js_offline"),
             )
 
         lines = (line for line in f.getvalue().split("\n") if line)
