@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import contextlib
+import io
+import logging
 import shutil
-import sys
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -14,6 +15,17 @@ import json_schema_for_humans as json2schema
 import typer
 from json_schema_for_humans import generate
 from packaging.version import Version
+from rich.logging import RichHandler
+
+_FORMAT = "%(message)s"
+logging.basicConfig(
+    level="NOTSET",
+    format="%(message)s",
+    handlers=[RichHandler(show_time=False, show_path=False)],
+)
+
+_logger = logging.getLogger("schema2html")
+_stderr = _logger.info
 
 
 @dataclass(frozen=True)
@@ -116,10 +128,7 @@ def _grouped_examples(examples):
 
 def _copy_to_output_directory(src, dst):
     if dst.exists():
-        print(
-            f"!! Warning location not empty, deleting destination: {dst} !!",
-            file=sys.stderr,
-        )
+        _logger.warning(f"Location not empty, deleting destination: {dst}")
         shutil.rmtree(dst)
     shutil.move(src, dst)
 
@@ -136,8 +145,14 @@ def _create_index_file(examples, schemas, output_dir):
 def _create_schema_references(schemas, output_dir):
     for schema in schemas:
         reference = output_dir / f"{schema.full_name}.html"
-        with contextlib.redirect_stdout(sys.stderr):
+
+        with contextlib.redirect_stdout(io.StringIO()) as f:
             json2schema.generate.generate_from_filename(schema.path, f"{reference}")
+
+        lines = (line for line in f.getvalue().split("\n") if line)
+        lines = (line.replace("==", "").strip() for line in lines)
+        for line in lines:
+            _stderr(line)
 
 
 def _create_examples(examples, output_dir):
