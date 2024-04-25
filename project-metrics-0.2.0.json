@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.exasol.com/project-metrics-0.2.0.json",
+  "$defs": {
+    "Rating": {
+      "description": "A = Excellent\nB = Good\nC = Satisfactory (Ok, could be better though)\nD = Poor (Improvement necessary)\nE = Bad (Need for action)\nF = Broken (Get it fixed!)\nN/A = Rating is not available",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "N/A"
+      ],
+      "title": "Rating",
+      "type": "string"
+    }
+  },
+  "description": "This schema defines the structure and values for reporting Q/A metrics for projects.",
+  "properties": {
+    "project": {
+      "description": "Project Name Corresponding to the Metrics.",
+      "title": "Project",
+      "type": "string"
+    },
+    "commit": {
+      "description": "Commit-Hash pointing to the state of the codebase used for generating the metrics.",
+      "title": "Commit",
+      "type": "string"
+    },
+    "date": {
+      "description": "The date and time when the metrics were recorded.",
+      "format": "date-time",
+      "title": "Date",
+      "type": "string"
+    },
+    "coverage": {
+      "description": "Represents the percentage of the codebase that is covered by automated tests.",
+      "maximum": 100.0,
+      "minimum": 0.0,
+      "title": "Coverage",
+      "type": "number"
+    },
+    "maintainability": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Rating"
+        }
+      ],
+      "description": "Rating of how easily the codebase can be understood, adapted, and extended."
+    },
+    "reliability": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Rating"
+        }
+      ],
+      "description": "Stability and dependability of the software. "
+    },
+    "security": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Rating"
+        }
+      ],
+      "description": "Resilience against security threats and vulnerabilities."
+    },
+    "technical_debt": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Rating"
+        }
+      ],
+      "description": "Amount of 'technical debt' in the project."
+    }
+  },
+  "required": [
+    "project",
+    "commit",
+    "date",
+    "coverage",
+    "maintainability",
+    "reliability",
+    "security",
+    "technical_debt"
+  ],
+  "title": "Metrics",
+  "type": "object"
+}
