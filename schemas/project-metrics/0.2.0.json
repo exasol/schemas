@@ -20,7 +20,7 @@
   "description": "This schema defines the structure and values for reporting Q/A metrics for projects.",
   "properties": {
     "project": {
-      "description": "Information about the originating project.",
+      "description": "Project Name Corresponding to the Metrics.",
       "title": "Project",
       "type": "string"
     },
