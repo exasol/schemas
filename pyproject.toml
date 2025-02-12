@@ -1,7 +1,7 @@
 [project]
 name = "exasol-schemas"
 description = "Definitions for Exasol-provided schemas (XML, JSON, etc.)"
-version = "0.1.0"
+version = "1.0.0"
 authors = [
     { name = "Nicola Coretti", email = "nicola.coretti@exasol.com"},
     { name = "Sebastian Bär", email = "sebastian.baer@exasol.com"}
