@@ -5,21 +5,23 @@ on: workflow_call
 jobs:
 
   documentation-job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       - name: SCM Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python & Poetry Environment
-        uses: exasol/python-toolbox/.github/actions/python-environment@main
+        uses: exasol/python-toolbox/.github/actions/python-environment@1.1.0
+        with:
+          poetry-version: '2.0.1'
 
       - name: Build Static Page
         run: |
           poetry run schema2html --schemas schemas --examples examples --destination gh-pages
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        uses: JamesIves/github-pages-deploy-action@v4.7.3
         with:
           branch: gh-pages
           folder: gh-pages
