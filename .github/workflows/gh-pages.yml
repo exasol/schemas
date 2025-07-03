@@ -9,7 +9,7 @@ jobs:
       - name: SCM Checkout
         uses: actions/checkout@v4
       - name: Setup Python & Poetry Environment
-        uses: exasol/python-toolbox/.github/actions/python-environment@1.3.0
+        uses: exasol/python-toolbox/.github/actions/python-environment@1.6.0
       - name: Build Static Page
         run: |
           poetry run schema2html --schemas schemas --examples examples --destination gh-pages
