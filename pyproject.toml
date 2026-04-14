@@ -1,6 +1,6 @@
 [project]
 name = "exasol-schemas"
-version = "1.0.0"
+version = "1.0.1"
 requires-python = ">=3.10,<4.0"
 description = "Definitions for Exasol-provided schemas (XML, JSON, etc.)"
 authors = [
