@@ -8,4 +8,4 @@ This only affects the build of this project. **Schema users are not affected.**
 
 ## Changes
 
-* #35: Fixed CVE-2026-21441, CVE-2026-25645 and CVE-2026-4539 by updating poetry lock.
+* #49: Fixed CVE-2026-21441, CVE-2026-25645 and CVE-2026-4539 by updating poetry lock.
