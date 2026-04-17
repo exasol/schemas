@@ -1,6 +1,12 @@
 name: Publish Schemas
 
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      deploy:
+        type: boolean
+        required: false
+        default: true
 
 jobs:
   build-documentation:
@@ -13,12 +19,15 @@ jobs:
       - name: Build Static Page
         run: |
           poetry run python -m exasol.schemas --schemas schemas --examples examples --destination gh-pages
+      - name: Verify Generated Index
+        run: test -f gh-pages/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
           path: gh-pages
 
   deploy-documentation:
+    if: ${{ inputs.deploy }}
     needs: [ build-documentation ]
     permissions:
       contents: read

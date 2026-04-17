@@ -1,6 +1,9 @@
-name: PR-Merge
+name: Publish Schemas
 
 on:
+  pull_request:
+    branches:
+      - 'main'
   push:
     branches:
       - 'main'
@@ -10,6 +13,8 @@ jobs:
   publish-docs:
     name: Publish Schemas
     uses: ./.github/workflows/gh-pages.yml
+    with:
+      deploy: ${{ github.event_name == 'push' }}
     permissions:
       contents: read
       pages: write
