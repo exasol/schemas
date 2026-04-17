@@ -1,12 +1,12 @@
 name: Publish Schemas
 
 on:
-  workflow_call:
-    inputs:
-      deploy:
-        type: boolean
-        required: false
-        default: true
+  pull_request:
+    branches:
+      - 'main'
+  push:
+    branches:
+      - 'main'
 
 jobs:
   build-documentation:
@@ -27,7 +27,7 @@ jobs:
           path: gh-pages
 
   deploy-documentation:
-    if: ${{ inputs.deploy }}
+    if: ${{ github.event_name == 'push' }}
     needs: [ build-documentation ]
     permissions:
       contents: read
