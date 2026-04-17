@@ -1,5 +1,6 @@
-from exasol.schemas import CLI
+import typer
 
+from exasol.schemas import generate_static_page
 
 if __name__ == "__main__":
-    CLI()
+    typer.run(generate_static_page)
