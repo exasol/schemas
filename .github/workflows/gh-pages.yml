@@ -18,7 +18,7 @@ jobs:
         uses: exasol/python-toolbox/.github/actions/python-environment@v6
       - name: Build Static Page
         run: |
-          poetry run python -m exasol.schemas --schemas schemas --examples examples --destination gh-pages
+          poetry run schema2html --schemas schemas --examples examples --destination gh-pages
       - name: Verify Generated Index
         run: test -f gh-pages/index.html
       - name: Upload artifact
