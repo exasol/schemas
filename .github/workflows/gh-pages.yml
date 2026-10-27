@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: SCM Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Setup Python & Poetry Environment
-        uses: exasol/python-toolbox/.github/actions/python-environment@v6
+        uses: exasol/python-toolbox/.github/actions/python-environment@v12
       - name: Build Static Page
         run: |
           poetry run schema2html --schemas schemas --examples examples --destination gh-pages
