@@ -6,10 +6,6 @@ This release regenerates the Poetry lock file, updating transitive dependencies 
 
 We also updated the GitHub actions to their latest versions.
 
-## Fixed CVEs
+## Security
 
 * CVE-2026-111497: Raised the optional `urllib3` Brotli-extra bounds to require patched `Brotli` and `brotlicffi` versions.
-
-## Changes
-
-* Relocked Poetry dependencies and audited updated packages for known vulnerabilities.
