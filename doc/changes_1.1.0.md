@@ -1,4 +1,4 @@
-schemas 2.0.0 — Released XXXX-XX-XX
+schemas 1.1.0 — Released XXXX-XX-XX
 
 # Summary
 
