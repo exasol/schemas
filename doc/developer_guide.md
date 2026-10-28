@@ -59,7 +59,7 @@ For testing purposes please deploy to the branch `gh-pages-test`.
 
 ### Prerequisites
 
-- Python >= 3.10
+- Python >= 3.11
 - Poetry
 
 ### Setting up Poetry
